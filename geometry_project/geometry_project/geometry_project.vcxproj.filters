@@ -23,5 +23,14 @@
     <ClCompile Include="GeometrySummative.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
