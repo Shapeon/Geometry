@@ -5,6 +5,9 @@
 int main()
 {
 	testAdd();
+	testMagnitude();
+	testNormalise();
+	testComputeAngleBetween();
 
 	system("pause");
 }

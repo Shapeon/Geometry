@@ -1,3 +1,4 @@
+#include <iostream>
 enum EIntersections { INTERSECTION_NONE, INTERSECTION_ONE, INTERSECTION_TWO };
 
 struct TVector2 { float m_fX;      float m_fY; };
