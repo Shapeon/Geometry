@@ -69,7 +69,11 @@ float ComputeDistancePointToSphere(const TSphere & _krSphere, const TVector3 & _
 	float ptoc_distance = sqrt(pow(_krPoint.m_fX - _krSphere.m_v3center.m_fX, 2) + pow(_krPoint.m_fY - _krSphere.m_v3center.m_fY, 2) + pow(_krPoint.m_fZ - _krSphere.m_v3center.m_fZ, 2));
 	return ptoc_distance;
 }
-
+/***********************
+* ComputeLineSphereIntersection: Compute Intersection between a line and a sphere
+* @parameter: line, sphere, two intersection points
+* @return: enumerated constant
+********************/
 EIntersections ComputeLineSphereIntersection(const T3DLine & _krLine, const TSphere & _krSphere, TVector3 & _rv3IntersectionPoint1, TVector3 & _rv3IntersectionPoint2)
 {
 	float a = (pow(_krLine.m_v3v.m_fX -_krLine.m_v3q.m_fX, 2) + pow(_krLine.m_v3v.m_fY - _krLine.m_v3q.m_fY, 2) + pow(_krLine.m_v3v.m_fZ - _krLine.m_v3q.m_fZ, 2));
@@ -87,10 +91,22 @@ EIntersections ComputeLineSphereIntersection(const T3DLine & _krLine, const TSph
 	}
 }
 
-TVector3 & ComputeIntersectionBetweenLines(const T3DLine & _krLine1, const T3DLine & _krLine2, TVector3 & _rIntersectionPoint)
+
+
+bool IsSurfaceLit(const TVector3 & _krPointOnSurface, const TVector3 & _krLightSourcePosition, const TTriangle3 & _krSurface)
 {
-	
+	float light_source_angle = ComputeAngleBetween(_krPointOnSurface, _krLightSourcePosition);
+	float angle_degrees = light_source_angle;
+	std::cout << angle_degrees << std::endl;
+	if (angle_degrees > 0 && angle_degrees < 180) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
+
+
 
 
 

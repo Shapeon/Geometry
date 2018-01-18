@@ -213,6 +213,52 @@ void testComputeLineSphereIntersection()
 	}
 }
 
+void testComputeIntersectionBetweenLines()
+{
+}
+
+void testIsSurfaceLit()
+{
+	TVector3 test_surfacept{
+		2.0,
+		2.0,
+		2.0,
+	};
+	TVector3 test_lightpt{
+		1.0,
+		5.0,
+		5.0,
+	};
+	TVector3 triangle_pt1{
+		0.0,
+		0.0,
+		0.0,
+	};
+	TVector3 triangle_pt2{
+		0.0,
+		0.0,
+		0.0,
+	};
+	TVector3 triangle_pt3{
+		0.0,
+		0.0,
+		0.0,
+	};
+	TTriangle3 test_triangle{
+		triangle_pt1,
+		triangle_pt2,
+		triangle_pt3,
+	};
+	std::cout << "Testing if a surface is lit by a light source" << std::endl;
+	if (IsSurfaceLit(test_surfacept, test_lightpt, test_triangle)== true) {
+		std::cout << "SUCCESS" << std::endl;
+	}
+	else {
+		std::cout << "FAILURE" << std::endl;
+	}
+	
+}
+
 
 
 
