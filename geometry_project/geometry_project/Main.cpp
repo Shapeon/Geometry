@@ -8,6 +8,8 @@ int main()
 	testMagnitude();
 	testNormalise();
 	testComputeAngleBetween();
+	testComputeDistancePointToSphere();
+	testComputeLineSphereIntersection();
 
 	system("pause");
 }

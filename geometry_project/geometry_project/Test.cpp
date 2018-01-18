@@ -69,6 +69,13 @@ void testMagnitude() {
 		std::cout << "FAILURE" << std::endl;
 		}
 	}
+
+/***********************
+* testNormalise : Test the normalise function
+* @author: Lewis MacJack
+* @parameter: ---
+* @return: ---
+********************/
 void testNormalise() {
 	TVector3 prenorm_vector{
 		2.0,
@@ -95,7 +102,13 @@ void testNormalise() {
 	}
 }
 
-void testComputeAngleBetween()
+/***********************
+* testComputeAngleBetween : Test the ComputeAngleBetween function
+* @author: Lewis MacJack
+* @parameter: ---
+* @return: ---
+********************/
+void testComputeAngleBetween() //Answer in degrees
 {
 	TVector3 peter{
 		2.0,
@@ -110,13 +123,96 @@ void testComputeAngleBetween()
 	};
 	float correct_angle = 26.78;
 	float test_angle = ComputeAngleBetween(peter, parker);
+	float epsilon = 0.001;
 	std::cout << "Computing angles between 3D lines" << std::endl;
-	if (correct_angle == test_angle) {
+	if (abs(test_angle - correct_angle)/test_angle <= epsilon) {
 		std::cout << "SUCCESS" << std::endl;
 	}
 	else {
 		std::cout << "FAILURE" << std::endl;
 	}
 	
+	std::cout << test_angle << std::endl;
 }
+/***********************
+* testComputeDistancePointToSphere : Test the ComputeDistancePointToSphere function
+* @author: Lewis MacJack
+* @parameter: ---
+* @return: ---
+********************/
+void testComputeDistancePointToSphere()
+{
+	TVector3 centre{
+		0.0,
+		0.0,
+		0.0,
+	};
+
+	TVector3 point{
+		5.0,
+		8.0,
+		3.0,
+	};
+	TSphere ball{
+		centre,
+		5.0,
+	};
+	float correct_distance = sqrt(98);
+	float test_distance = ComputeDistancePointToSphere(ball, point);
+	std::cout << "Computing distance between a point and the centre of a sphere" << std::endl;
+	if (correct_distance == test_distance) {
+		std::cout << "SUCCESS" << std::endl;
+	}
+	else {
+		std::cout << "FAILURE" << std::endl;
+	}
+}
+
+void testComputeLineSphereIntersection()
+{
+	TVector3 line_point{
+		4.0,
+		4.0,
+		4.0,
+	};
+	TVector3 line_dir{
+		1.0,
+		1.0,
+		1.0,
+	};
+	T3DLine test_line{
+		line_point,
+		line_dir,
+	};
+	TVector3 circle_centre{
+		0.0,
+		0.0,
+		0.0,
+	};
+	TSphere test_sphere{
+		circle_centre,
+		1.0,
+	};
+
+	TVector3 test_inter1{
+		0.0,
+		0.0,
+		0.0,
+	};
+	TVector3 test_inter2{
+		0.0,
+		0.0,
+		0.0,
+	};
+	std::cout << "Testing the Intersection of a Line and a Sphere" << std::endl;
+	if (ComputeLineSphereIntersection(test_line, test_sphere, test_inter1, test_inter2) == 2) {
+		std::cout << "SUCCESS" << std::endl;
+	}
+	else {
+		std::cout << "FAILURE" << std::endl;
+	}
+}
+
+
+
 
