@@ -10,6 +10,7 @@ int main()
 	testComputeAngleBetween();
 	testComputeDistancePointToSphere();
 	testComputeLineSphereIntersection();
+	testComputeIntersectionBetweenLines();
 	testIsSurfaceLit();
 	system("pause");
 }

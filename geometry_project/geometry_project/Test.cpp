@@ -167,7 +167,12 @@ void testComputeDistancePointToSphere()
 		std::cout << "FAILURE" << std::endl;
 	}
 }
-
+/***********************
+* testComputeLineSphereIntersection : Test the ComputeLineSphereIntersection function
+* @author: Lewis MacJack
+* @parameter: ---
+* @return: ---
+********************/
 void testComputeLineSphereIntersection()
 {
 	TVector3 line_point{
@@ -212,11 +217,70 @@ void testComputeLineSphereIntersection()
 		std::cout << "FAILURE" << std::endl;
 	}
 }
+/***********************
+* testComputeIntersectionBetweenLines : Test the testComputeIntersectionBetweenLines function
+* @author: Lewis MacJack
+* @parameter: ---
+* @return: ---
+********************/
+void testComputeIntersectionBetweenLines(){
+	TVector3 Line1Point{
+		5,
+		5,
+		4
+	};
+	TVector3 Line1Direction{
+		10,
+		10,
+		6
+	};
+	T3DLine testLine1{
+		Line1Point,
+		Line1Direction
+	};
+	TVector3 Line2Point{
+		5,
+		5,
+		4
+	};
+	TVector3 Line2Direction{
+		10,
+		10,
+		6
+	};
+	T3DLine testLine2{
+		Line2Point,
+		Line2Direction
+	};
 
-void testComputeIntersectionBetweenLines()
-{
+	TVector3 testIntersection{
+		0.0,
+		0.0,
+		0.0
+	};
+
+	TVector3 DesiredResultant{
+		5.0,
+		5.0,
+		4.0
+	};
+	std::cout << "Testing if two lines intersect" << std::endl;
+	ComputeIntersectionBetweenLines(testLine1, testLine2, testIntersection);
+	if ((DesiredResultant.m_fX == testIntersection.m_fX) && (DesiredResultant.m_fY == testIntersection.m_fY) && (DesiredResultant.m_fZ == testIntersection.m_fZ)) {
+		std::cout << "SUCCESS" << std::endl;
+	}
+	else {
+		std::cout << "FAILURE" << std::endl;
+	}
+	
 }
 
+/***********************
+* testIsSurfaceLit : Test the IsSurfaceLit function
+* @author: Lewis MacJack
+* @parameter: ---
+* @return: ---
+********************/
 void testIsSurfaceLit()
 {
 	TVector3 test_surfacept{
@@ -230,19 +294,19 @@ void testIsSurfaceLit()
 		5.0,
 	};
 	TVector3 triangle_pt1{
-		0.0,
-		0.0,
-		0.0,
+		2.0,
+		2.0,
+		2.0,
 	};
 	TVector3 triangle_pt2{
-		0.0,
-		0.0,
-		0.0,
+		2.0,
+		2.0,
+		3.0,
 	};
 	TVector3 triangle_pt3{
-		0.0,
-		0.0,
-		0.0,
+		2.0,
+		3.0,
+		2.0,
 	};
 	TTriangle3 test_triangle{
 		triangle_pt1,
