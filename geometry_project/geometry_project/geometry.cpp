@@ -16,12 +16,7 @@ TVector3& Add(const TVector3& _krA, const TVector3& _krB, TVector3& _rResultant)
 	_rResultant.m_fZ = _krA.m_fZ + _krB.m_fZ;
 	return _rResultant;
 }
-/***********************
-* Subtract: Subtracts two vectors
-* @author: Lewis MacJack
-* @parameter: two vectors to subtract and a resultant vector
-* @return: the resultant vector of the subtraction
-********************/
+
 
 TVector3& Subtract(const TVector3& _krA, const TVector3& _krB, TVector3& _rResultant) {
 	// subtracting points
@@ -30,7 +25,7 @@ TVector3& Subtract(const TVector3& _krA, const TVector3& _krB, TVector3& _rResul
 	_rResultant.m_fZ = _krA.m_fZ - _krB.m_fZ;
 	return _rResultant;
 }
- 
+
 TVector3& ScaleVector(const TVector3& _krA, const float _kfScalar, TVector3& _rResultant) {
 	// scale points
 	_rResultant.m_fX = _krA.m_fX * _kfScalar;
@@ -49,6 +44,12 @@ float Magnitude(const TVector3& _krA) {
 	float magnitude_result = sqrt(pow(_krA.m_fX, 2) + pow(_krA.m_fY, 2) + pow(_krA.m_fZ, 2)); // Calculating magnitude
 	return magnitude_result;
 	 }
+
+float DotProduct(const TVector3 & _krA, const TVector3 & _krB)
+{
+	float dot_product = (_krA.m_fX * _krB.m_fX) + (_krA.m_fY * _krB.m_fY) + (_krA.m_fZ * _krB.m_fZ);
+	return dot_product;
+}
 
 
 TVector3 & CrossProduct(const TVector3& _krA, const TVector3& _krB, TVector3& _rResultant) {
@@ -192,15 +193,15 @@ TVector3& ComputeIntersectionBetweenLines(const T3DLine& _krLine1, const T3DLine
 
 bool IsSurfaceLit(const TVector3 & _krPointOnSurface, const TVector3 & _krLightSourcePosition, const TTriangle3 & _krSurface)
 {
-	float light_source_angle = ComputeAngleBetween(_krPointOnSurface, _krLightSourcePosition);
+	
 	TVector3 vector_add1 = Add(_krSurface.m_v3p1, _krSurface.m_v3p2, vector_add1);
 	TVector3 vector_add2 = Add(vector_add1, _krSurface.m_v3p3, vector_add2);
 	TVector3 vector_norm = Normalise(vector_add2, vector_norm);
 
 	TVector3 vector_subtract1 = Subtract(_krLightSourcePosition, _krPointOnSurface, vector_subtract1);
-	float final_angle = ComputeAngleBetween(vector_norm, vector_subtract1);
-	std::cout << final_angle << std:: endl;
-	if (light_source_angle > 0 && light_source_angle < 180) {
+	float d = DotProduct(vector_norm, vector_subtract1);
+	
+	if ((d > 0) && (d < 180)) {
 		return true;
 	}
 	else {
